@@ -1,11 +1,15 @@
 // how come we don't need to wrap renderGathering in a function?
-import { onSubmitAttendance } from "./gatheringList.controller.js";
+import { onSubmitAttendance, onRemoveAttendance } from "./gatheringList.controller.js";
 export function renderGatheringList(gatherings, container) {
-    container.innerHTML =
-        `<ul>
+    container.innerHTML = `<ul>
             ${gatherings.map(renderGathering).join("\n")}
         </ul>`;
-    container.querySelectorAll("form").forEach((form) => form.addEventListener("submit", onSubmitAttendance));
+    container
+        .querySelectorAll("form")
+        .forEach((form) => form.addEventListener("submit", onSubmitAttendance));
+    container
+        .querySelectorAll(".btn-remove")
+        .forEach((removeButton) => removeButton.addEventListener("click", onRemoveAttendance));
 }
 function renderGathering(gathering) {
     return `<li>
@@ -23,7 +27,14 @@ function renderGathering(gathering) {
                 <button>Attend</button>
         </form>
         <ul>
-            ${gathering.attendants.map((attendant) => `<li>${attendant}</li>`).join("\n")}
+            ${gathering.attendants
+        .map((attendant) => `
+            <div class="attendee">
+            <li>${attendant.name}</li>
+            <button class="btn-remove" data-gathering-id-button="${gathering.id}" data-attendee-id="${attendant.id}">Remove</button>
+            </div>
+            `)
+        .join("\n")}
         </ul>
     </li>`;
 }

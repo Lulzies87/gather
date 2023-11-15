@@ -47,3 +47,18 @@ form {
         opacity: 1;
     }
 }
+
+.attendee {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-remove {
+    font-size: 0.6rem;
+    font-weight: bold;
+    height: 1rem;
+    color: red;
+    background-color: rgb(255, 230, 230);
+    border: 1px solid rgb(212, 0, 0);
+}

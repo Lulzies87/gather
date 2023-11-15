@@ -21,3 +21,14 @@ export function onSubmitAttendance(e) {
     }
     Gathering.attend(e.target.getAttribute("data-gathering-id"), attendant);
 }
+export function onRemoveAttendance(e) {
+    const attendeeId = e.target.getAttribute("data-attendee-id");
+    const gatheringId = e.target.getAttribute("data-gathering-id-button");
+    if (!gatheringId) {
+        throw new Error(`error!`);
+    }
+    if (!attendeeId) {
+        throw new Error(`error!`);
+    }
+    Gathering.remove(gatheringId, attendeeId);
+}

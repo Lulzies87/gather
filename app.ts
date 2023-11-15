@@ -1,8 +1,8 @@
 // [V] 1. Show more details about the gathering (organizer, start time, duration, etc...)
 // [V] 2. When adding an attendant fails, show appropriate message (alert)
-// [ ] 2++. Show message in the DOM
-// [ ] 3. Persist data to local storage
-// [ ] 4. Add option to remove an attendance
+// [V] 2++. Show message in the DOM
+// [V] 3. Persist data to local storage
+// [V] 4. Add option to remove an attendance
 // [ ] 5. Filter gatherings by name (add a search input on top)
 // [ ] 6. Create "host a gathering" form
 // [ ] 7. Implement users (model, link with gatherings, etc...)
@@ -19,14 +19,6 @@ const typescriptMeetupId = Gatherings.createGathering({
     title: "Typescript Meetup"
 });
 
-// for (let i = 0; i < 10000; i++) {
-//     try {
-//         Gatherings.attend(typescriptMeetupId, `attendant #${i + 1}`);
-//     } catch (err) {
-//         break;
-//     }
-// }
-
 Gatherings.createGathering({
     durationInHours: 1.5,
     location: "Ramat-Gan",
@@ -35,9 +27,6 @@ Gatherings.createGathering({
     startTime: new Date(),
     title: "Fullstack Practice"
 });
-
-// console.log("reached participant limit");
-// console.log(Gatherings.getGatherings());
 
 const gatheringListElement = document.getElementById("gathering-list");
 
