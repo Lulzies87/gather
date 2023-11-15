@@ -18,7 +18,7 @@ const gatherings = [] as Gatherings;
 const callbacks = [] as Function[];
 
 export function createGathering(gathering: Omit<Gathering, "attendants" | "id">) {
-    // there is a potential bug in here! what is it?
+    // there is a potential bug in here! what is it? - '...gathering' does not verify that the information is matching the requirements of Gathering type.
     gatherings.push({
         ...gathering,
         id: crypto.randomUUID(),

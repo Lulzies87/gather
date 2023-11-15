@@ -16,15 +16,18 @@ export function renderGatheringList(gatherings: Gatherings, container: HTMLEleme
 
 function renderGathering(gathering: Gathering) {
     return `<li>
-        <p><span>Title:</span> ${gathering.title}</p>
-        <p>Attendants (${gathering.attendants.length})</p>
+        <p>Title: ${gathering.title}</p>
+        <p>Organizer: ${gathering.organizer}</p>
+        <p>Start Time: ${gathering.startTime}</p>
+        <p>Duration: ${gathering.durationInHours} Hour/s</p>
+        <p>Attendants (${gathering.attendants.length}/${gathering.participantLimit})</p>
         <form data-gathering-id="${gathering.id}">
             <label for="${gathering.id}-attend-input">Name</label>
             <input
                 id="${gathering.id}-attend-input"
                 name="attendant"
                 required />
-            <button>Attend</button>
+                <button>Attend</button>
         </form>
         <ul>
             ${gathering.attendants.map((attendant) => `<li>${attendant}</li>`).join("\n")}

@@ -25,3 +25,25 @@ h5,
 h6 {
     line-height: 1.2;
 }
+
+form {
+    position: relative;
+}
+
+.errorMsg {
+    border: 1px solid red;
+    background-color: rgb(255, 226, 226);
+    color: red;
+    padding: 0 0.6rem;
+    font-size: 0.6rem;
+    margin-left: 0.2rem;
+    position: absolute;
+    top: 0.4rem;
+
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    &.show {
+        opacity: 1;
+    }
+}
