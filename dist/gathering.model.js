@@ -1,6 +1,5 @@
 // TODO: add participant profile
 let gatherings = [];
-// let attendees: Attendees = [];
 const callbacks = [];
 const retrieveGatherings = localStorage.getItem("gatherings");
 if (!retrieveGatherings) {
@@ -16,7 +15,6 @@ export function createGathering(gathering) {
         id: crypto.randomUUID(),
         attendants: [],
     });
-    //   localStorage.setItem("gatherings", JSON.stringify(gatherings));
     emitUpdate();
     return gatherings.at(-1).id;
 }
@@ -34,7 +32,6 @@ export function attend(gatheringId, attendant) {
     }
     // push to attedants
     gathering.attendants.push({ name: attendant, id: crypto.randomUUID() });
-    console.log(gatherings);
     emitUpdate();
 }
 export function remove(gatheringId, attendeeId) {
@@ -42,9 +39,8 @@ export function remove(gatheringId, attendeeId) {
     if (!gathering) {
         throw new Error(`No gathering with gathering ID ${gatheringId}`);
     }
-    const attendeeIndex = gathering.attendants.findIndex(attendee => attendee.id === attendeeId);
+    const attendeeIndex = gathering.attendants.findIndex((attendee) => attendee.id === attendeeId);
     gathering.attendants.splice(attendeeIndex, 1);
-    console.log(gatherings);
     emitUpdate();
 }
 export function onUpdate(callback) {
@@ -59,4 +55,5 @@ function emitUpdate() {
             console.error("Invalid callback:", callback);
         }
     });
+    //   localStorage.setItem("gatherings", JSON.stringify(gatherings));
 }

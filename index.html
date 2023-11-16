@@ -11,6 +11,35 @@
 <body>
     <h1>Gather</h1>
 
+    <form class="hostGatheringForm" name="host-a-gathering" action="">
+        <h2>Host a Gathering:</h2>
+        <div class="form-input">
+            <label for="title">Title:</label>
+            <input id="title" name="title" type="text" required />
+        </div>
+        <div class="form-input">
+            <label for="organizer">Organizer Name:</label>
+            <input id="organizer" name="organizer" type="text" required />
+        </div>
+        <div class="form-input">
+            <label for="location">Location:</label>
+            <input id="location" name="location" type="string" required />
+        </div>
+        <div class="form-input">
+            <label for="startTime">Start Time:</label>
+            <input id="startTime" name="startTime" type="datetime-local" required />
+        </div>
+        <div class="form-input">
+            <label for="duration">Duration (in hour/s):</label>
+            <input id="duration" name="duration" type="text" required />
+        </div>
+        <div class="form-input">
+            <label for="participantLimit">Participant Limit:</label>
+            <input id="participantLimit" name="participantLimit" type="number" required />
+        </div>
+        <button>Save</button>
+    </form>
+
     <article id="gathering-list"></article>
 
     <script type="module" src="dist/app.js"></script>

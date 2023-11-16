@@ -45,3 +45,41 @@ export function onRemoveAttendance(e: Event) {
     }
     Gathering.remove(gatheringId, attendeeId);
   }
+
+  export function onHostGathering(e: SubmitEvent) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    Gathering.createGathering({
+        durationInHours: parseNumber(formData.get('duration')),
+        location: parseString(formData.get('location')),
+        organizer: parseString(formData.get('organizer')),
+        participantLimit: parseNumber(formData.get('participantLimit')),
+        startTime: formData.get('startTime'),
+        title: parseString(formData.get('title'))
+    });
+
+    function parseNumber(input: FormDataEntryValue | null) {
+        if (input == null) {
+            throw new Error('null!');
+        } else {
+            return Number(input);
+        }
+    }
+
+    function parseString(input: FormDataEntryValue | null) {
+        if (input == null) {
+            throw new Error('null!');
+        } else {
+            return input.toString();
+        }
+    }
+
+    function parseDate(input: FormDataEntryValue | null) {
+        if (input == null) {
+            throw new Error('null!');
+        } else {
+            alert('blabla');
+        }
+    }
+  }

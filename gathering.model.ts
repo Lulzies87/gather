@@ -22,7 +22,6 @@ export type Gathering = {
 export type Gatherings = Gathering[];
 
 let gatherings: Gatherings = [];
-// let attendees: Attendees = [];
 const callbacks: Function[] = [];
 
 const retrieveGatherings = localStorage.getItem("gatherings");
@@ -42,7 +41,6 @@ export function createGathering(
     attendants: [],
   });
 
-  //   localStorage.setItem("gatherings", JSON.stringify(gatherings));
   emitUpdate();
 
   return gatherings.at(-1)!.id;
@@ -70,26 +68,26 @@ export function attend(gatheringId: string, attendant: string) {
 
   // push to attedants
   gathering.attendants.push({ name: attendant, id: crypto.randomUUID() });
-  console.log(gatherings);
 
   emitUpdate();
 }
 
-export function remove (gatheringId: string, attendeeId: string) {
-    const gathering = gatherings.find((gathering) => gathering.id === gatheringId);
+export function remove(gatheringId: string, attendeeId: string) {
+  const gathering = gatherings.find(
+    (gathering) => gathering.id === gatheringId
+  );
 
-    if (!gathering) {
-        throw new Error(`No gathering with gathering ID ${gatheringId}`);
-    }
+  if (!gathering) {
+    throw new Error(`No gathering with gathering ID ${gatheringId}`);
+  }
 
-    const attendeeIndex = gathering.attendants.findIndex(attendee => attendee.id === attendeeId);
-    gathering.attendants.splice(attendeeIndex, 1);
+  const attendeeIndex = gathering.attendants.findIndex(
+    (attendee) => attendee.id === attendeeId
+  );
+  gathering.attendants.splice(attendeeIndex, 1);
 
-    console.log(gatherings);
-
-    emitUpdate();
+  emitUpdate();
 }
-
 
 export function onUpdate(callback: Function) {
   callbacks.push(callback);
@@ -103,4 +101,5 @@ function emitUpdate() {
       console.error("Invalid callback:", callback);
     }
   });
+//   localStorage.setItem("gatherings", JSON.stringify(gatherings));
 }

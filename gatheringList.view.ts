@@ -1,7 +1,11 @@
 // how come we don't need to wrap renderGathering in a function?
 
 import { Gathering, Gatherings } from "./gathering.model.js";
-import { onSubmitAttendance, onRemoveAttendance } from "./gatheringList.controller.js";
+import {
+  onSubmitAttendance,
+  onRemoveAttendance,
+  onHostGathering,
+} from "./gatheringList.controller.js";
 
 export function renderGatheringList(
   gatherings: Gatherings,
@@ -11,14 +15,19 @@ export function renderGatheringList(
             ${gatherings.map(renderGathering).join("\n")}
         </ul>`;
 
+  document
+    .querySelector(".hostGatheringForm")
+    ?.addEventListener("submit", onHostGathering);
+
   container
-    .querySelectorAll("form")
+    .querySelectorAll(".submitAttendanceForm")
     .forEach((form) => form.addEventListener("submit", onSubmitAttendance));
 
   container
     .querySelectorAll(".btn-remove")
     .forEach((removeButton) =>
-      removeButton.addEventListener("click", onRemoveAttendance));
+      removeButton.addEventListener("click", onRemoveAttendance)
+    );
 }
 
 function renderGathering(gathering: Gathering) {
@@ -30,7 +39,7 @@ function renderGathering(gathering: Gathering) {
         <p>Attendants (${gathering.attendants.length}/${
     gathering.participantLimit
   })</p>
-        <form data-gathering-id="${gathering.id}">
+        <form class="submitAttendanceForm" data-gathering-id="${gathering.id}">
             <label for="${gathering.id}-attend-input">Name</label>
             <input
                 id="${gathering.id}-attend-input"
@@ -52,4 +61,3 @@ function renderGathering(gathering: Gathering) {
         </ul>
     </li>`;
 }
-
